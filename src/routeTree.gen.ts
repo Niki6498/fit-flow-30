@@ -9,38 +9,167 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SocialRouteImport } from './routes/social'
+import { Route as ProgressRouteImport } from './routes/progress'
+import { Route as HealthRouteImport } from './routes/health'
+import { Route as FeedRouteImport } from './routes/feed'
+import { Route as ActivityRouteImport } from './routes/activity'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SessionTypeRouteImport } from './routes/session.$type'
+import { Route as ActivityIdRouteImport } from './routes/activity.$id'
 
+const SocialRoute = SocialRouteImport.update({
+  id: '/social',
+  path: '/social',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgressRoute = ProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthRoute = HealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeedRoute = FeedRouteImport.update({
+  id: '/feed',
+  path: '/feed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActivityRoute = ActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SessionTypeRoute = SessionTypeRouteImport.update({
+  id: '/session/$type',
+  path: '/session/$type',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActivityIdRoute = ActivityIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => ActivityRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRouteWithChildren
+  '/feed': typeof FeedRoute
+  '/health': typeof HealthRoute
+  '/progress': typeof ProgressRoute
+  '/social': typeof SocialRoute
+  '/activity/$id': typeof ActivityIdRoute
+  '/session/$type': typeof SessionTypeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRouteWithChildren
+  '/feed': typeof FeedRoute
+  '/health': typeof HealthRoute
+  '/progress': typeof ProgressRoute
+  '/social': typeof SocialRoute
+  '/activity/$id': typeof ActivityIdRoute
+  '/session/$type': typeof SessionTypeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRouteWithChildren
+  '/feed': typeof FeedRoute
+  '/health': typeof HealthRoute
+  '/progress': typeof ProgressRoute
+  '/social': typeof SocialRoute
+  '/activity/$id': typeof ActivityIdRoute
+  '/session/$type': typeof SessionTypeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/activity'
+    | '/feed'
+    | '/health'
+    | '/progress'
+    | '/social'
+    | '/activity/$id'
+    | '/session/$type'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/activity'
+    | '/feed'
+    | '/health'
+    | '/progress'
+    | '/social'
+    | '/activity/$id'
+    | '/session/$type'
+  id:
+    | '__root__'
+    | '/'
+    | '/activity'
+    | '/feed'
+    | '/health'
+    | '/progress'
+    | '/social'
+    | '/activity/$id'
+    | '/session/$type'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActivityRoute: typeof ActivityRouteWithChildren
+  FeedRoute: typeof FeedRoute
+  HealthRoute: typeof HealthRoute
+  ProgressRoute: typeof ProgressRoute
+  SocialRoute: typeof SocialRoute
+  SessionTypeRoute: typeof SessionTypeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/social': {
+      id: '/social'
+      path: '/social'
+      fullPath: '/social'
+      preLoaderRoute: typeof SocialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progress': {
+      id: '/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof ProgressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/health': {
+      id: '/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof HealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feed': {
+      id: '/feed'
+      path: '/feed'
+      fullPath: '/feed'
+      preLoaderRoute: typeof FeedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/activity': {
+      id: '/activity'
+      path: '/activity'
+      fullPath: '/activity'
+      preLoaderRoute: typeof ActivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +177,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/session/$type': {
+      id: '/session/$type'
+      path: '/session/$type'
+      fullPath: '/session/$type'
+      preLoaderRoute: typeof SessionTypeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/activity/$id': {
+      id: '/activity/$id'
+      path: '/$id'
+      fullPath: '/activity/$id'
+      preLoaderRoute: typeof ActivityIdRouteImport
+      parentRoute: typeof ActivityRoute
+    }
   }
 }
 
+interface ActivityRouteChildren {
+  ActivityIdRoute: typeof ActivityIdRoute
+}
+
+const ActivityRouteChildren: ActivityRouteChildren = {
+  ActivityIdRoute: ActivityIdRoute,
+}
+
+const ActivityRouteWithChildren = ActivityRoute._addFileChildren(
+  ActivityRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActivityRoute: ActivityRouteWithChildren,
+  FeedRoute: FeedRoute,
+  HealthRoute: HealthRoute,
+  ProgressRoute: ProgressRoute,
+  SocialRoute: SocialRoute,
+  SessionTypeRoute: SessionTypeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
