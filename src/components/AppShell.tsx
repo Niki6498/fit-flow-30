@@ -20,7 +20,7 @@ export function PageHeader({
   right?: ReactNode;
 }) {
   return (
-    <div className="flex items-end justify-between px-5 pt-8 pb-4">
+    <div className="flex items-end justify-between px-5 pt-8 pb-4 pl-20">
       <div className="min-w-0">
         <h1 className="truncate text-2xl font-bold tracking-tight">{title}</h1>
         {subtitle ? (
