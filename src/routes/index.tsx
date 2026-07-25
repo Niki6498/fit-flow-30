@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, Play, Sparkles, ArrowRight } from "lucide-react";
+import { ChevronDown, Sparkles, ArrowRight } from "lucide-react";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import {
   ACTIVITY_META,
@@ -102,10 +102,16 @@ function HomePage() {
 
           <button
             onClick={start}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl gradient-primary py-4 font-semibold text-primary-foreground glow-primary transition hover:brightness-110 active:scale-[0.98]"
+            className="mx-auto mt-6 flex h-36 w-36 flex-col items-center justify-center gap-2 rounded-full text-white shadow-2xl transition hover:scale-105 active:scale-95"
+            style={{
+              background: "linear-gradient(135deg, #ec4899 0%, #f43f5e 50%, #fb7185 100%)",
+              boxShadow: "0 24px 60px -16px rgba(236, 72, 153, 0.55)",
+            }}
           >
-            <Play className="h-5 w-5 fill-current" />
-            Los geht's
+            <span className="grid h-12 w-12 place-items-center rounded-full bg-white/20 backdrop-blur-sm">
+              <Icon className="h-6 w-6" size={24} />
+            </span>
+            <span className="text-sm font-bold">Los geht's</span>
           </button>
         </div>
       </div>
