@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SocialRouteImport } from './routes/social'
-import { Route as RecoveryRouteImport } from './routes/recovery'
 import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as HealthRouteImport } from './routes/health'
 import { Route as FeedRouteImport } from './routes/feed'
@@ -22,11 +21,6 @@ import { Route as ActivityIdRouteImport } from './routes/activity.$id'
 const SocialRoute = SocialRouteImport.update({
   id: '/social',
   path: '/social',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RecoveryRoute = RecoveryRouteImport.update({
-  id: '/recovery',
-  path: '/recovery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgressRoute = ProgressRouteImport.update({
@@ -71,7 +65,6 @@ export interface FileRoutesByFullPath {
   '/feed': typeof FeedRoute
   '/health': typeof HealthRoute
   '/progress': typeof ProgressRoute
-  '/recovery': typeof RecoveryRoute
   '/social': typeof SocialRoute
   '/activity/$id': typeof ActivityIdRoute
   '/session/$type': typeof SessionTypeRoute
@@ -82,7 +75,6 @@ export interface FileRoutesByTo {
   '/feed': typeof FeedRoute
   '/health': typeof HealthRoute
   '/progress': typeof ProgressRoute
-  '/recovery': typeof RecoveryRoute
   '/social': typeof SocialRoute
   '/activity/$id': typeof ActivityIdRoute
   '/session/$type': typeof SessionTypeRoute
@@ -94,7 +86,6 @@ export interface FileRoutesById {
   '/feed': typeof FeedRoute
   '/health': typeof HealthRoute
   '/progress': typeof ProgressRoute
-  '/recovery': typeof RecoveryRoute
   '/social': typeof SocialRoute
   '/activity/$id': typeof ActivityIdRoute
   '/session/$type': typeof SessionTypeRoute
@@ -107,7 +98,6 @@ export interface FileRouteTypes {
     | '/feed'
     | '/health'
     | '/progress'
-    | '/recovery'
     | '/social'
     | '/activity/$id'
     | '/session/$type'
@@ -118,7 +108,6 @@ export interface FileRouteTypes {
     | '/feed'
     | '/health'
     | '/progress'
-    | '/recovery'
     | '/social'
     | '/activity/$id'
     | '/session/$type'
@@ -129,7 +118,6 @@ export interface FileRouteTypes {
     | '/feed'
     | '/health'
     | '/progress'
-    | '/recovery'
     | '/social'
     | '/activity/$id'
     | '/session/$type'
@@ -141,7 +129,6 @@ export interface RootRouteChildren {
   FeedRoute: typeof FeedRoute
   HealthRoute: typeof HealthRoute
   ProgressRoute: typeof ProgressRoute
-  RecoveryRoute: typeof RecoveryRoute
   SocialRoute: typeof SocialRoute
   SessionTypeRoute: typeof SessionTypeRoute
 }
@@ -153,13 +140,6 @@ declare module '@tanstack/react-router' {
       path: '/social'
       fullPath: '/social'
       preLoaderRoute: typeof SocialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recovery': {
-      id: '/recovery'
-      path: '/recovery'
-      fullPath: '/recovery'
-      preLoaderRoute: typeof RecoveryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/progress': {
@@ -232,7 +212,6 @@ const rootRouteChildren: RootRouteChildren = {
   FeedRoute: FeedRoute,
   HealthRoute: HealthRoute,
   ProgressRoute: ProgressRoute,
-  RecoveryRoute: RecoveryRoute,
   SocialRoute: SocialRoute,
   SessionTypeRoute: SessionTypeRoute,
 }
