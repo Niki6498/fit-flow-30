@@ -54,7 +54,7 @@ function HomePage() {
           <div className="relative mt-3">
             <button
               onClick={() => setOpen((v) => !v)}
-              className="flex w-full items-center justify-between rounded-2xl bg-white/70 px-4 py-3 text-left backdrop-blur transition hover:bg-white"
+              className="flex w-full items-center justify-between rounded-2xl bg-secondary/70 px-4 py-3 text-left backdrop-blur transition hover:bg-secondary"
             >
               <span className="flex items-center gap-3">
                 <span
