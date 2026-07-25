@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, Play, Sparkles, ArrowRight } from "lucide-react";
+import { ChevronDown, Play, Sparkles, ArrowRight, Leaf } from "lucide-react";
 import { AppShell, PageHeader } from "@/components/AppShell";
 import {
   ACTIVITY_META,
@@ -131,6 +131,29 @@ function HomePage() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Recovery card */}
+      <div className="mt-3 px-5">
+        <Link
+          to="/recovery"
+          className="glass relative flex items-center gap-4 overflow-hidden rounded-3xl p-4 transition hover:glow-primary"
+        >
+          <div
+            className="pointer-events-none absolute -bottom-10 -right-10 h-28 w-28 rounded-full opacity-60 blur-2xl"
+            style={{ background: "var(--gradient-primary)" }}
+          />
+          <span className="relative grid h-12 w-12 place-items-center rounded-2xl bg-primary/10 text-primary">
+            <Leaf className="h-5.5 w-5.5" size={22} />
+          </span>
+          <div className="relative min-w-0 flex-1">
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              Recovery
+            </p>
+            <p className="font-semibold">Score, Schlaf & Stress</p>
+          </div>
+          <ArrowRight className="relative h-4 w-4 text-muted-foreground" size={16} />
+        </Link>
       </div>
 
       {/* Suggested */}
